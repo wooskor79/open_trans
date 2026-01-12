@@ -9,7 +9,6 @@
 
 <div class="container">
 
-<!-- 로고 -->
 <div class="logo">
   🚀
 </div>
@@ -19,7 +18,6 @@
   <div class="status">현재 시스템 상태: API 기반 (외부 서버)</div>
 </header>
 
-<!-- API 탭 -->
 <nav class="tabs">
   <button class="active" onclick="switchTab('gemini', event)">Gemini 서버 (API)</button>
   <button onclick="switchTab('deepl', event)">DeepL 서버 (API)</button>
@@ -28,7 +26,6 @@
 
 <section class="panel">
 
-<!-- API 설정 -->
 <div class="section left">
   <h2>API 설정</h2>
   <div class="row">
@@ -38,7 +35,6 @@
   <div id="quota" class="hint"></div>
 </div>
 
-<!-- 출력 형식 -->
 <div class="section left">
   <h2>출력 형식</h2>
   <div class="radio-group">
@@ -47,17 +43,38 @@
   </div>
 </div>
 
-<!-- 자막 업로드 -->
 <div class="section left">
   <h2>자막 업로드</h2>
-  <input type="file" id="subFile" accept=".srt,.smi,.ass">
+  <input type="file" id="subFile" accept=".srt,.smi,.ass" multiple>
 </div>
 
 <div class="section left">
   <button id="startBtn" disabled onclick="startTranslate()">번역 시작</button>
 </div>
 
-<!-- 공지사항 -->
+<div id="dashboard" class="section dashboard" style="display:none;">
+  <h2>번역 진행 상황</h2>
+  <div class="stat-container">
+    <div class="stat-row">
+      <span><strong>1) 원본 언어 :</strong> <span id="stat-lang">-</span></span>
+      <span><strong>2) 진행시간 :</strong> <span id="stat-time">00:00</span></span>
+    </div>
+    <div class="stat-row">
+      <span><strong>3) 진행도 :</strong> <span id="stat-progress-line">0/0 줄</span> (<span id="stat-progress-file">0/0 파일</span>)</span>
+    </div>
+    <div class="preview-area">
+      <p><strong>4) 현재 번역 중</strong></p>
+      <div class="curr-box">
+        <div class="line">원어 : <span id="curr-orig">-</span></div>
+        <div class="line ko">한국어 : <span id="curr-trans">-</span></div>
+      </div>
+      <p style="margin-top:10px;"><strong>다음에 번역할 5줄 :</strong></p>
+      <ul id="next-preview" class="next-preview"></ul>
+    </div>
+    <div id="final-msg" class="final-msg"></div>
+  </div>
+</div>
+
 <div class="section notice">
   <h2>공지사항</h2>
   <ul>
@@ -80,11 +97,6 @@
       </a>
     </li>
   </ul>
-</div>
-
-<!-- 로그 -->
-<div class="section log">
-  <pre id="log"></pre>
 </div>
 
 </section>
