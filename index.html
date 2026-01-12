@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>SRT 번역기 (API 호출기반)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+<!-- 로고 -->
+<div class="logo">
+  🚀
+</div>
+
+<header>
+  <h1>SRT 번역기 (API 호출기반)</h1>
+  <div class="status">현재 시스템 상태: API 기반 (외부 서버)</div>
+</header>
+
+<!-- API 탭 -->
+<nav class="tabs">
+  <button class="active" onclick="switchTab('gemini', event)">Gemini 서버 (API)</button>
+  <button onclick="switchTab('deepl', event)">DeepL 서버 (API)</button>
+  <button onclick="switchTab('gpt', event)">GPT 서버 (API)</button>
+</nav>
+
+<section class="panel">
+
+<!-- API 설정 -->
+<div class="section left">
+  <h2>API 설정</h2>
+  <div class="row">
+    <input type="password" id="apiKey" placeholder="API Key 입력">
+    <button onclick="checkKey()">확인</button>
+  </div>
+  <div id="quota" class="hint"></div>
+</div>
+
+<!-- 출력 형식 -->
+<div class="section left">
+  <h2>출력 형식</h2>
+  <div class="radio-group">
+    <label><input type="radio" name="outfmt" value="original" checked> 원본 확장자 유지</label>
+    <label><input type="radio" name="outfmt" value="srt"> SRT로 변환 출력</label>
+  </div>
+</div>
+
+<!-- 자막 업로드 -->
+<div class="section left">
+  <h2>자막 업로드</h2>
+  <input type="file" id="subFile" accept=".srt,.smi,.ass">
+</div>
+
+<div class="section left">
+  <button id="startBtn" disabled onclick="startTranslate()">번역 시작</button>
+</div>
+
+<!-- 공지사항 -->
+<div class="section notice">
+  <h2>공지사항</h2>
+  <ul>
+    <li>
+      Gemini API 발급:
+      <a href="https://makersuite.google.com/app/apikey" target="_blank">
+        https://makersuite.google.com/app/apikey
+      </a>
+    </li>
+    <li>
+      DeepL API 발급:
+      <a href="https://www.deepl.com/pro-api" target="_blank">
+        https://www.deepl.com/pro-api
+      </a>
+    </li>
+    <li>
+      GPT(OpenAI) API 발급:
+      <a href="https://platform.openai.com/account/api-keys" target="_blank">
+        https://platform.openai.com/account/api-keys
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- 로그 -->
+<div class="section log">
+  <pre id="log"></pre>
+</div>
+
+</section>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
